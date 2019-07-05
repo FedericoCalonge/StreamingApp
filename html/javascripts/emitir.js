@@ -52,7 +52,7 @@ $(function(){  //cuando document (el html) estè listo... (acà usamos jquery)
 
 	if(navigator.getUserMedia){//Entonces abajo ponemos si (if) el UserMedia existe (ya que lo agarrò de alguno de los de arriba) entonces usamos el metodo getUserMedia con 3 parametros: en el 1ro le decimos que nos capture video y audio (con video: true, audio:true), el 2do parametro es la funciòn en caso que sea exitosa la carga del video (llamamos a loadCam() y el 3ro en caso que no sea exitosa (llamamos a loadFail() ) 
 
-		navigator.getUserMedia({video:true, audio:true},loadCam,loadFail); //ejecutamos las funciones loadCam o loadFail de arriba.
+		navigator.getUserMedia({video:true, audio:false},loadCam,loadFail); //ejecutamos las funciones loadCam o loadFail de arriba.
 	}
 
 	//Ahora lo importante, vamos a enviar el video en los clientes "visualizar.html". 

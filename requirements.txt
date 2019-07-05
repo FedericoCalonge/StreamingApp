@@ -1,7 +1,0 @@
-express
-express-session
-express-validator
-uuid-random
-socket.io
-ioredis
-connect-redis

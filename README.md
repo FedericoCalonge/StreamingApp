@@ -1,21 +1,38 @@
 # TPFinal-APPenInternet
 Trabajo Práctico Final para la materia Aplicaciones en Internet, de la Universidad Nacional de Avellaneda.
 
-## Instalación de dependencias
+## Requirements
 
-### Javascript
-Todas las dependencias se encuentran en el archivo _requirements.txt_. Para instalarlas directamente con **npm**:
+https://nodejs.org/es/download/package-manager/
+### Javascript, node y dependencies
+Para la instalación de NODE visitar la siguiente página: _https://nodejs.org/es/download/package-manager/_
+
+Todas las dependencias que utilizaremos se encuentran en _dependencies_ dentro del archivo _package.json_. Para instalarlas directamente con **npm** debemos ubicarnos en la carpeta del proyecto y ejecutar el comando:
 ```
-$ cat requirements.txt | xargs npm install -g
+$ npm install
 ```
 
-### Redis
+### Docker y Redis
 La aplicación utiliza Redis para el guardado de los usuarios. Durante esta instalación usaremos un Redis Dockerizado.
-Para instalar Docker, siga las instrucciones en la siguiente página: https://docs.docker.com/install/
-
-Una vez listo, descargue la imagen de Redis:
+Para descargar e instalar Docker primero debemos asegurarnos de tener actualizada la lista de paquetes del repositorio utilizado en nuestro sistema:
 ```
-$ docker image pull redis:5.0-alpine
+$ sudo apt-get update
+```
+
+Después instalamos docker:
+```
+$ sudo apt install docker.io
+```
+```
+$ sudo docker version :nos devolverá la versión instalada tanto del servidor como la del cliente del motor Docker.
+```
+```
+sudo docker info :nos mostrará un detalle con la configuración actual del motor Docker instalado en el sistema.
+
+```
+Despues para descargar redis (BD):
+```
+$ sudo docker image pull redis 
 ```
 
 ## Uso
@@ -23,17 +40,15 @@ $ docker image pull redis:5.0-alpine
 ### Puesta en marcha de la base de datos
 Debe ser un Redis local, que se encuentro escuchando por el puerto 6379 (el puerto por defecto de Redis). Si se está utilizando Docker, para hacer eso hay que crear un contenedor de Redis:
 ```
-$ docker container run -d -p 6379:6379 --name redis-TPFinal redis:5.0-alpine
+$ sudo docker container run -d -p 6379:6379 redis :esto nos levanta la BD en el puerto 6379 y un contenedor el cual escuchará en ese puerto.
 ```
-Esto pondrá a correr un contenedor que escucha en nuestro puerto 6379.
-
 Para detener la base:
 ```
-$ docker container stop redis-TPFinal
+$ sudo docker container stop redis-TPFinal
 ```
 Para reiniciarla:
 ```
-$ docker container start redis-TPFinal
+$ sudo docker container start redis-TPFinal
 ```
 El parado y reinicio **no** eliminará información de la base de datos.
 
@@ -44,4 +59,4 @@ Para iniciarlo, en la carpeta raíz del programa correr:
 ```
 $ node server.js
 ```
-En servidor comenzará a escuchar en el puerto 8080.
+En servidor comenzará a escuchar en el puerto 8080. Luego se deberá ingresar a la siguiente URL en el navegador para registrarse y posteriormente loguearse: http://localhost:8080/
